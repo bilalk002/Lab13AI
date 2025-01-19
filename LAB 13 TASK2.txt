@@ -1,0 +1,11 @@
+def calfitness(S):
+    fit=[]
+    total=0
+    print("Fitness")
+    for i in S:
+        fit.append(i.count(1))
+        total+=i.count(1)
+    print(fit)
+    print(total)
+    return fit
+fit=calfitness(S)
