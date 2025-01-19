@@ -1,0 +1,53 @@
+S=[[0,0,1,1,1,1,1,1,1,1],[0,0,1,1,1,1,1,1,1,1],[0,1,1,0,1,1,0,1,1,1],[0,1,0,1,1,1,0,0,1,1],[0,0,1,0,1,1,1,1,1,1],[0,0,1,0,1,1,0,1,1,1]]
+print("S=", S)
+
+def calfitness(S):
+    fit = []
+    total = 0
+    print("Fitness")
+    for i in S:
+        fit.append(i.count(1))
+        total += i.count(1)
+    print(fit)
+    print(total)
+    return fit
+
+fit = calfitness(S)
+
+print("Arranging in Descending order")
+desc = S
+for i in range(len(desc)):
+    j = i + 1
+    for j in range(len(desc)):
+        if desc[i].count(1) > desc[j].count(1):
+            desc[j], desc[i] = desc[i], desc[j]
+
+print("s =", desc)
+
+print("Cross over after 2 points")
+for i in range(3):
+    desc[0][i], desc[3][i] = desc[3][i], desc[0][i]
+    desc[4][i], desc[5][i] = desc[5][i], desc[4][i]
+desc[0], desc[3] = desc[3], desc[0]
+desc[4], desc[5] = desc[5], desc[4]
+
+print("s1 and s4")
+print("s1=", desc[0], "s4=", desc[3])
+print("s5=", desc[4], "s6=", desc[5])
+print("s=", desc)
+
+print("Mutation")
+for i in range(6):
+    for j in range(2):
+        if desc[i][j] == 0:
+            desc[i][j] = 1
+        else:
+            desc[i][j] = 0
+
+print("s=", desc)
+
+fit2 = calfitness(desc)
+if fit < fit2:
+    print("Fitness is greater after applying Genetic Algorithm")
+else:
+    print("Fitness is greater before applying Genetic Algorithm")
